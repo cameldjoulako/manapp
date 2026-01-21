@@ -1,18 +1,10 @@
 import { Component } from '@angular/core';
-
-type Department = 'IT' | 'HR' | 'Finance' | 'Marketing';
-type Level = 'J' | 'S' | 'M';
-
-interface EmployeeI {
-  _id: string;
-  name: string;
-  department: Department;
-  level: Level;
-}
+import { EmployeeI } from '../models/employee.model';
+import { LevelPipe } from '../pipes/level-pipe';
 
 @Component({
   selector: 'app-employee',
-  imports: [],
+  imports: [LevelPipe],
   templateUrl: './employee.html',
   styleUrl: './employee.scss',
 })

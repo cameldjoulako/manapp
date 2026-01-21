@@ -2,10 +2,11 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 //import { Test } from './test/test';
 import { Employee } from './employee/employee';
-import { DatePipe, CurrencyPipe, UpperCasePipe } from '@angular/common';
+/* import { DatePipe, CurrencyPipe, UpperCasePipe } from '@angular/common';
+import { LevelPipe } from './pipes/level-pipe'; */
 @Component({
   selector: 'app-root',
-  imports: [Employee, DatePipe, CurrencyPipe, UpperCasePipe],
+  imports: [Employee /* LevelPipe */ /* DatePipe, CurrencyPipe, UpperCasePipe */],
   //template:
   templateUrl: './app.html',
   styleUrl: './app.scss',
