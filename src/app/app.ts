@@ -49,7 +49,7 @@ export class App {
     this.inputType = this.inputType === 'password' ? 'text' : 'password';
   }
 
-  now: Date = new Date();
+  /* now: Date = new Date();
   amount: number = 12.89;
-  appcurrency = 'FCFA ';
+  appcurrency = 'FCFA '; */
 }
