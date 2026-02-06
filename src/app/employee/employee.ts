@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { EmployeeI } from '../models/employee.model';
 import { LevelPipe } from '../pipes/level-pipe';
 
@@ -10,4 +10,9 @@ import { LevelPipe } from '../pipes/level-pipe';
 })
 export class Employee {
   employee = input.required<EmployeeI>();
+  nameClick = output<string>();
+
+  onNameClick() {
+    this.nameClick.emit(this.employee()._id);
+  }
 }

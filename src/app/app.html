@@ -1,11 +1,11 @@
-<app-employee [employee]="employee"></app-employee>
-<!-- {{ 'J' | level }} -->
-<!-- {{ now | date: 'MMM HH:mm' | uppercase }}
+<app-employee [employee]="employee" (nameClick)="onNameClick($event)">
+  <!-- {{ 'J' | level }} -->
+  <!-- {{ now | date: 'MMM HH:mm' | uppercase }}
 <br />
 {{ now | date: 'fullDate' }}
 <br />
 {{ amount | currency: appcurrency }} -->
-<!-- <p>Welcome to {{ appTitle }}</p>
+  <!-- <p>Welcome to {{ appTitle }}</p>
 <app-test></app-test>
 <app-test></app-test>
 <app-test></app-test>
@@ -45,3 +45,4 @@
   <button >View more</button>
 </div>
  -->
+</app-employee>

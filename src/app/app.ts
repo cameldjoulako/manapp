@@ -25,6 +25,10 @@ export class App {
     level: 'S',
   };
 
+  onNameClick(employeeId: string) {
+    console.log(employeeId);
+  }
+
   //FIN INPUT & OUTPUT
 
   features: number = 5;
