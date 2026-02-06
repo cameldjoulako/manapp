@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 //import { Test } from './test/test';
 import { Employee } from './employee/employee';
+import { EmployeeI } from './models/employee.model';
 /* import { DatePipe, CurrencyPipe, UpperCasePipe } from '@angular/common';
 import { LevelPipe } from './pipes/level-pipe'; */
 @Component({
@@ -14,6 +15,17 @@ import { LevelPipe } from './pipes/level-pipe'; */
 export class App {
   appTitle = 'ManApp';
   appVersion: number = 1.0;
+
+  //INPUT & OUTPUT
+
+  employee: EmployeeI = {
+    _id: '69857452185789635874',
+    name: 'Camel Djoulako',
+    department: 'IT',
+    level: 'S',
+  };
+
+  //FIN INPUT & OUTPUT
 
   features: number = 5;
   protected readonly title = signal('manapp');

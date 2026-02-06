@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { EmployeeI } from '../models/employee.model';
 import { LevelPipe } from '../pipes/level-pipe';
 
@@ -9,10 +9,5 @@ import { LevelPipe } from '../pipes/level-pipe';
   styleUrl: './employee.scss',
 })
 export class Employee {
-  employee: EmployeeI = {
-    _id: '69857452185789635874',
-    name: 'John Doe',
-    department: 'IT',
-    level: 'J',
-  };
+  employee = input.required<EmployeeI>();
 }

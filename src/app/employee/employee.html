@@ -1,15 +1,16 @@
 <!-- Details -->
+@let emp = employee();
 <div class="details">
   <div class="details-row">
     <div class="label">Name :</div>
-    <div class="value">{{ employee.name }}</div>
+    <div class="value">{{ emp.name }}</div>
   </div>
   <div class="details-row">
     <div class="label">Level :</div>
-    <div class="value">{{ employee.level | level }}</div>
+    <div class="value">{{ emp.level | level }}</div>
   </div>
   <div class="details-row">
     <div class="label">Department :</div>
-    <div class="value">{{ employee.department }}</div>
+    <div class="value">{{ emp.department }}</div>
   </div>
 </div>
