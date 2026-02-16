@@ -22,7 +22,7 @@ export class App {
     _id: '69857452185789635874',
     name: 'Camel Djoulako',
     department: 'IT',
-    level: 'S',
+    level: 'J',
   };
 
   onNameClick(employeeId: string) {

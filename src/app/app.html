@@ -1,4 +1,15 @@
 <app-employee [employee]="employee" (nameClick)="onNameClick($event)">
+  <!-- Control flow -->
+  <br /><br /><br />
+  @let level = employee.level;
+  @if (level === 'J') {
+    <p>Junior</p>
+  } @else if (level === 'M') {
+    <p>Mid</p>
+  } @else {
+    <p>Senior</p>
+  }
+
   <!-- {{ 'J' | level }} -->
   <!-- {{ now | date: 'MMM HH:mm' | uppercase }}
 <br />
