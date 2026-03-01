@@ -1,22 +1,44 @@
-<app-employee [employee]="employee" (nameClick)="onNameClick($event)">
+<app-employee-list
+  [employees]="employees"
+  (details)="showDetails($event)"
+  (edit)="onEdit($event)"
+  (delete)="onDelete($event)"
+/>
+
+@if (currentEmployee) {
+  <app-employee [employee]="currentEmployee"></app-employee>
+}
+
+<!-- <app-employee [employee]="employee" (nameClick)="onNameClick($event)">
   <!-- Control flow -->
-  <br /><br /><br />
+
+<!--  <br /><br /><br />
   @let level = employee.level;
-  @if (level === 'J') {
+   @if (level === 'J') {
     <p>Junior</p>
   } @else if (level === 'M') {
     <p>Mid</p>
   } @else {
     <p>Senior</p>
-  }
+  } -->
 
-  <!-- {{ 'J' | level }} -->
-  <!-- {{ now | date: 'MMM HH:mm' | uppercase }}
+<!-- @switch (level) {
+    @case ('J') {
+      <p>Junior</p>
+    }
+
+    @case ('M') {
+      <p>Mid</p>
+    }
+  } -->
+
+<!-- {{ 'J' | level }} -->
+<!-- {{ now | date: 'MMM HH:mm' | uppercase }}
 <br />
 {{ now | date: 'fullDate' }}
 <br />
 {{ amount | currency: appcurrency }} -->
-  <!-- <p>Welcome to {{ appTitle }}</p>
+<!-- <p>Welcome to {{ appTitle }}</p>
 <app-test></app-test>
 <app-test></app-test>
 <app-test></app-test>
@@ -56,4 +78,17 @@
   <button >View more</button>
 </div>
  -->
-</app-employee>
+<!-- </app-employee> -->
+<!-- @let levl = employee.level;
+@if (levl === 'J') {
+  <p>Junior</p>
+} @else if (levl === 'M') {
+  <p>Mid</p>
+} @else {
+  <p>Senior</p>
+} -->
+<!--
+@for (employee of employees; track employee._id; let pair = $even; let ind = $even) {
+  <app-employee [employee]="employee" (nameClick)="onNameClick($event)"></app-employee>
+}
+ -->
