@@ -1,10 +1,12 @@
 # Manapp
 
-Employee management App
+Employee Management App
 
 ## Development server
 
-To start a local development server, run:
+Clone this repos and install dependency.
+
+Start local server:
 
 ```bash
 ng serve

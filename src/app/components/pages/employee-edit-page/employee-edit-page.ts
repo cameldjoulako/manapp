@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
@@ -15,7 +15,16 @@ import { EmployeeI } from '../../../models/employee.model';
 export class EmployeeEditPage {
   route = inject(ActivatedRoute);
   employeeService = inject(EmployeeService);
-  employee: EmployeeI | null = null;
+
+  //employee: EmployeeI | null = null; //marche pour les 2 premiere methode
+
+  //3e methode: signal et computed et
+  empId = input.required<string>();
+
+  employee = computed(() => {
+    const id = this.empId();
+    return this.employeeService.getEmployee(id);
+  });
 
   constructor() {
     //onservable: Recuperation de facon non réactive
@@ -36,9 +45,9 @@ export class EmployeeEditPage {
           this.employee = null;
         },
       }); */
-
     //snapshot: recuperation de facons non reactive: on ne gere pas la desinscription de fluix
-    const employeeId = this.route.snapshot.params['empId'];
-    this.employee = this.employeeService.getEmployee(employeeId);
+    /* const employeeId = this.route.snapshot.params['empId'];
+    this.employee = this.employeeService.getEmployee(employeeId); */
+    //3e methode:
   }
 }

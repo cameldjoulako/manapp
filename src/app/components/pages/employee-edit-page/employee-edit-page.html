@@ -1,3 +1,13 @@
-@if (employee) {
-  <app-employee [employee]="employee"></app-employee>
+<!-- Méthode 1 et 2 -->
+<!-- @if (employee) {
+  <app-employee [employee]="employee()"></app-employee>
+}
+
+Employee Id: {{ empId() }}
+ -->
+
+<!-- methode 3 -->
+@let emp = employee();
+@if (emp) {
+  <app-employee [employee]="emp" />
 }
