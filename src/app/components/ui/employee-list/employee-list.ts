@@ -1,5 +1,5 @@
 import { Component, input, output } from '@angular/core';
-import { EmployeeI } from '../models/employee.model';
+import { EmployeeI } from '../../../models/employee.model';
 
 @Component({
   selector: 'app-employee-list',

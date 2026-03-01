@@ -1,6 +1,6 @@
 import { Component, input, output } from '@angular/core';
-import { EmployeeI } from '../models/employee.model';
-import { LevelPipe } from '../pipes/level-pipe';
+import { EmployeeI } from '../../../models/employee.model';
+import { LevelPipe } from '../../../pipes/level-pipe';
 
 @Component({
   selector: 'app-employee',
