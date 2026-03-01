@@ -9,7 +9,7 @@ import { EmployeeService } from './services/employee';
 import { LevelPipe } from './pipes/level-pipe'; */
 @Component({
   selector: 'app-root',
-  imports: [Employee, EmployeeList /* LevelPipe */ /* DatePipe, CurrencyPipe, UpperCasePipe */],
+  imports: [/* LevelPipe */ /* DatePipe, CurrencyPipe, UpperCasePipe */ RouterOutlet],
   //template:
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -17,8 +17,6 @@ import { LevelPipe } from './pipes/level-pipe'; */
 export class App {
   appTitle = 'ManApp';
   appVersion: number = 1.0;
-
-  private employeeService = inject(EmployeeService);
 
   //INPUT & OUTPUT
 
@@ -74,29 +72,4 @@ export class App {
   /* now: Date = new Date();
   amount: number = 12.89;
   appcurrency = 'FCFA '; */
-
-  employees: EmployeeI[] = [];
-
-  currentEmployee: null | EmployeeI = null;
-
-  constructor() {
-    this.employees = this.employeeService.getEmployees();
-  }
-
-  showDetails(employeeId: string) {
-    this.currentEmployee = this.employeeService.getEmployee(employeeId);
-  }
-
-  onDelete(employeeId: string) {
-    console.log(employeeId);
-    this.currentEmployee = null;
-
-    this.employeeService.deleteEmployee(employeeId);
-
-    this.employees = this.employeeService.getEmployees();
-  }
-
-  onEdit(employeeId: string) {
-    console.log(employeeId);
-  }
 }

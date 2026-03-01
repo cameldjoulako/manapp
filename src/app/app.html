@@ -1,4 +1,4 @@
-<app-employee-list
+<!-- <app-employee-list
   [employees]="employees"
   (details)="showDetails($event)"
   (edit)="onEdit($event)"
@@ -7,7 +7,7 @@
 
 @if (currentEmployee) {
   <app-employee [employee]="currentEmployee"></app-employee>
-}
+} -->
 
 <!-- <app-employee [employee]="employee" (nameClick)="onNameClick($event)">
   <!-- Control flow -->
@@ -92,3 +92,5 @@
   <app-employee [employee]="employee" (nameClick)="onNameClick($event)"></app-employee>
 }
  -->
+
+<router-outlet></router-outlet>

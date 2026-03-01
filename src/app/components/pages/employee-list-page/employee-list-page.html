@@ -1,0 +1,9 @@
+<app-employee-list
+  [employees]="employees"
+  (details)="showDetails($event)"
+  (edit)="onEdit($event)"
+  (delete)="onDelete($event)"
+/>
+@if (currentEmployee) {
+  <app-employee [employee]="currentEmployee"></app-employee>
+}
