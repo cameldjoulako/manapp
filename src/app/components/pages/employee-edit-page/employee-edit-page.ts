@@ -30,6 +30,7 @@ export class EmployeeEditPage {
     //onservable: Recuperation de facon non réactive
     /* this.route.params
       .pipe(
+      .pipe(
         map((params) => {
           const employeeId = params['empId'];
           return this.employeeService.getEmployee(employeeId);

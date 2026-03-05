@@ -93,4 +93,45 @@
 }
  -->
 
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet>
+ -->
+
+<!-- Template driven forms -->
+<!-- <input
+  type="text"
+  [(ngModel)]="data.username"
+  placeholder="Username"
+  [attr.disabled]="!data.isAdult ? 'disabled' : null"
+/>
+<div style="margin-top: 20px">
+  <label for="major"> >= 18 ans </label>
+  <input type="radio" name="major" [value]="true" [(ngModel)]="data.isAdult" />
+
+  <label for="major"> <= 18 ans </label>
+  <input type="radio" name="major" [value]="false" [(ngModel)]="data.isAdult" />
+</div>
+{{ data.username }}
+<br />
+{{ data.isAdult | json }} -->
+
+<!--
+.
+.
+.
+Reactive form
+.
+.
+
+.-->
+
+<input type="text" [(ngModel)]="data.username" placeholder="Username" />
+<div style="margin-top: 20px">
+  <label for="major"> >= 18 ans </label>
+  <input type="radio" name="major" [value]="true" [(ngModel)]="data.isAdult" />
+
+  <label for="major"> <= 18 ans </label>
+  <input type="radio" name="major" [value]="false" [(ngModel)]="data.isAdult" />
+</div>
+{{ data.username }}
+<br />
+{{ data.isAdult | json }} -->

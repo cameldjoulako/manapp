@@ -5,11 +5,17 @@ import { Employee } from './components/ui/employee/employee';
 import { EmployeeI } from './models/employee.model';
 import { EmployeeList } from './components/ui/employee-list/employee-list';
 import { EmployeeService } from './services/employee';
+import { FormsModule, NgModel } from '@angular/forms';
+import { JsonPipe } from '@angular/common';
 /* import { DatePipe, CurrencyPipe, UpperCasePipe } from '@angular/common';
 import { LevelPipe } from './pipes/level-pipe'; */
 @Component({
   selector: 'app-root',
-  imports: [/* LevelPipe */ /* DatePipe, CurrencyPipe, UpperCasePipe */ RouterOutlet],
+  imports: [
+    /* LevelPipe */ /* DatePipe, CurrencyPipe, UpperCasePipe */ RouterOutlet,
+    FormsModule,
+    JsonPipe,
+  ],
   //template:
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -72,4 +78,22 @@ export class App {
   /* now: Date = new Date();
   amount: number = 12.89;
   appcurrency = 'FCFA '; */
+
+  /*
+  .
+  .
+  .
+  Template Driven Forms
+  .
+  .
+  */
+
+  /*   username: string = '';
+
+  isAdult = false; */
+
+  data = {
+    username: '',
+    isAdult: false,
+  };
 }
