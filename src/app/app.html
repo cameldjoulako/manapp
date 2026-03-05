@@ -124,14 +124,72 @@ Reactive form
 
 .-->
 
-<input type="text" [(ngModel)]="data.username" placeholder="Username" />
-<div style="margin-top: 20px">
+<!-- <input [formControl]="usernameCtrl" type="text" placeholder="Username" />
+@if (usernameCtrl.errors && usernameCtrl.touched) { -->
+<!--
+      touched : true if the user has focused and left the input field //dirty : true if the user has
+      changed the value of the input field
+  -->
+
+<!-- @if (usernameCtrl.hasError('required')) {
+    <p style="color: red">Username is required</p>
+  }
+
+  @if (usernameCtrl.hasError('minlength')) {
+    <p style="color: red">minimum 3 characters is required</p>
+  }
+} -->
+<!-- {{ usernameCtrl.errors | json }}
+<br /> -->
+<!--
+{{ usernameCtrl.hasError('required') | json }}
+<br />
+{{ usernameCtrl.hasError('minlength') | json }} -->
+
+<!--
+.
+.Reactive form sans le formgroup
+.
+-->
+
+<!-- <div style="margin-top: 20px">
   <label for="major"> >= 18 ans </label>
-  <input type="radio" name="major" [value]="true" [(ngModel)]="data.isAdult" />
+  <input [formControl]="isAdultCtrl" type="radio" name="major" [value]="true" />
 
   <label for="major"> <= 18 ans </label>
-  <input type="radio" name="major" [value]="false" [(ngModel)]="data.isAdult" />
+  <input [formControl]="isAdultCtrl" type="radio" name="major" [value]="false" />
 </div>
-{{ data.username }}
+
 <br />
-{{ data.isAdult | json }} -->
+
+Username: {{ usernameCtrl.value }}
+<br />
+
+Valid: {{ usernameCtrl.valid.toString() | uppercase }}
+
+<br />
+<br />
+Adulte: {{ isAdultCtrl.value }} -->
+
+<!--
+  .
+  .
+  . Reactive form avec les form group dans le template
+  .
+  .
+ -->
+
+<div [formGroup]="form">
+  <input formControlName="username" type="text" placeholder="Username" />
+
+  <div style="margin-top: 20px">
+    <label for="major"> >= 18 ans </label>
+    <input formControlName="isAdult" type="radio" [value]="true" />
+
+    <label for="major"> <= 18 ans </label>
+    <input formControlName="isAdult" type="radio" [value]="false" />
+  </div>
+
+  <br />
+  {{ form.value | json }}
+</div>

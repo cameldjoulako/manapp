@@ -5,16 +5,27 @@ import { Employee } from './components/ui/employee/employee';
 import { EmployeeI } from './models/employee.model';
 import { EmployeeList } from './components/ui/employee-list/employee-list';
 import { EmployeeService } from './services/employee';
-import { FormsModule, NgModel } from '@angular/forms';
-import { JsonPipe } from '@angular/common';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  NgModel,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { JsonPipe, UpperCasePipe } from '@angular/common';
+import { required } from '@angular/forms/signals';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 /* import { DatePipe, CurrencyPipe, UpperCasePipe } from '@angular/common';
 import { LevelPipe } from './pipes/level-pipe'; */
 @Component({
   selector: 'app-root',
   imports: [
     /* LevelPipe */ /* DatePipe, CurrencyPipe, UpperCasePipe */ RouterOutlet,
-    FormsModule,
+    /* FormsModule */
     JsonPipe,
+    ReactiveFormsModule,
+    UpperCasePipe,
   ],
   //template:
   templateUrl: './app.html',
@@ -92,8 +103,33 @@ export class App {
 
   isAdult = false; */
 
-  data = {
+  /* data = {
     username: '',
     isAdult: false,
-  };
+  }; */
+
+  /**
+   * .
+   * .
+   * . Reactive Forms
+   */
+
+  //reactive form sans formgroup
+  usernameCtrl = new FormControl('', [Validators.required, Validators.minLength(3)]);
+
+  isAdultCtrl = new FormControl(false);
+
+  constructor() {
+    ///en Angular 18 events permet d'ecouter à la fois les évenements(changements) de valeur et de statut d'un FormControl
+    this.usernameCtrl.events.pipe(takeUntilDestroyed()).subscribe((value) => {
+      console.log('Username changed:', value);
+    });
+  }
+
+  //regroupement dans un formgroup des reactive form
+  form = new FormGroup({
+    username: new FormControl('', [Validators.required, Validators.minLength(3)]),
+
+    isAdult: new FormControl(false),
+  });
 }
