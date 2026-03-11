@@ -7,7 +7,15 @@ Employee Id: {{ empId() }}
  -->
 
 <!-- methode 3 -->
-@let emp = employee();
+<!-- @let emp = employee();
 @if (emp) {
   <app-employee [employee]="emp" />
+}
+ -->
+
+@let emp = employee();
+@if (emp) {
+  <h1 class="page-title">Edit Employee</h1>
+
+  <app-employee-form [employee]="emp" (editEmployee)="onEditEmployee($event)" />
 }

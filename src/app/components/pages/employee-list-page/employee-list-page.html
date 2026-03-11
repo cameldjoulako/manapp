@@ -1,5 +1,11 @@
+<h1 class="page-title">Employee List</h1>
+
+<div class="buttons">
+  <a class="buttons" routerLink="/employees/new">Add new employee</a>
+</div>
+
 <app-employee-list
-  [employees]="employees"
+  [employees]="employees()"
   (details)="showDetails($event)"
   (edit)="onEdit($event)"
   (delete)="onDelete($event)"

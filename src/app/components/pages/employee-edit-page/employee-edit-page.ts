@@ -1,14 +1,15 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { EmployeeService } from '../../../services/employee';
 import { Employee } from '../../ui/employee/employee';
 import { EmployeeI } from '../../../models/employee.model';
+import { EmployeeForm } from '../../ui/employee-form/employee-form';
 
 @Component({
   selector: 'app-employee-edit-page',
-  imports: [Employee],
+  imports: [EmployeeForm],
   templateUrl: './employee-edit-page.html',
   styleUrl: './employee-edit-page.scss',
 })
@@ -20,6 +21,8 @@ export class EmployeeEditPage {
 
   //3e methode: signal et computed et
   empId = input.required<string>();
+
+  router = inject(Router);
 
   employee = computed(() => {
     const id = this.empId();
@@ -50,5 +53,10 @@ export class EmployeeEditPage {
     /* const employeeId = this.route.snapshot.params['empId'];
     this.employee = this.employeeService.getEmployee(employeeId); */
     //3e methode:
+  }
+
+  onEditEmployee(employee: EmployeeI) {
+    this.employeeService.editEmployee(employee);
+    this.router.navigate(['/employees']);
   }
 }

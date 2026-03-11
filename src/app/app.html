@@ -10,7 +10,7 @@
 } -->
 
 <!-- <app-employee [employee]="employee" (nameClick)="onNameClick($event)">
-  <!-- Control flow -->
+ Control flow -->
 
 <!--  <br /><br /><br />
   @let level = employee.level;
@@ -179,7 +179,7 @@ Adulte: {{ isAdultCtrl.value }} -->
   .
  -->
 
-<div [formGroup]="form">
+<!-- <div [formGroup]="form">
   <input formControlName="username" type="text" placeholder="Username" />
 
   <div style="margin-top: 20px">
@@ -192,4 +192,6 @@ Adulte: {{ isAdultCtrl.value }} -->
 
   <br />
   {{ form.value | json }}
-</div>
+</div> -->
+
+<router-outlet> </router-outlet>

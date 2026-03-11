@@ -7,3 +7,26 @@
 .red {
   color: red;
 }
+
+.page-title {
+  font-weight: bold;
+  font-size: 2.4rem;
+  margin: 15px 0;
+  text-transform: uppercase;
+  color: #2c5e77;
+}
+
+/* search input */
+input.search {
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 2rem;
+  margin: 10px;
+  width: 400px;
+  &:not(:focus) {
+    background-color: #f3f1f5;
+  }
+  &::placeholder {
+    color: #434242;
+  }
+}

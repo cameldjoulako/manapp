@@ -23,9 +23,8 @@ import { LevelPipe } from './pipes/level-pipe'; */
   imports: [
     /* LevelPipe */ /* DatePipe, CurrencyPipe, UpperCasePipe */ RouterOutlet,
     /* FormsModule */
-    JsonPipe,
-    ReactiveFormsModule,
-    UpperCasePipe,
+    /* JsonPipe */ ReactiveFormsModule,
+    /* UpperCasePipe */
   ],
   //template:
   templateUrl: './app.html',

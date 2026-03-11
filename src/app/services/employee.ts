@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { EmployeeI } from '../models/employee.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EmployeeService {
-  employees: EmployeeI[] = [
+  private employeesSignal = signal<EmployeeI[]>([
     {
       _id: '69a335b1b786dd68e3f8a376',
       name: 'Bartlett Bray',
@@ -48,35 +48,33 @@ export class EmployeeService {
       department: 'Marketing',
       level: 'S',
     },
-    {
-      _id: '69a335b103db0df7e5dc341e',
-      name: 'Ingrid Caldwell',
-      department: 'IT',
-      level: 'J',
-    },
-    {
-      _id: '69a335b1c86a15bcff273ca1',
-      name: 'Skinner Whitehead',
-      department: 'Marketing',
-      level: 'J',
-    },
-    {
-      _id: '69a335b1f3e287ce32256561',
-      name: 'Herminia Delacruz',
-      department: 'HR',
-      level: 'S',
-    },
-  ];
+  ]);
+
+  employees = this.employeesSignal.asReadonly();
 
   getEmployee(id: string) {
-    return this.employees.find((emp) => emp._id === id) || null;
-  }
-
-  getEmployees() {
-    return this.employees;
+    return this.employeesSignal().find((emp) => emp._id === id) || null;
   }
 
   deleteEmployee(id: string) {
-    this.employees = this.employees.filter((emp) => emp._id !== id);
+    this.employeesSignal.update((employees) => employees.filter((emp) => emp._id !== id));
+  }
+
+  addEmployee(employee: EmployeeI) {
+    const _id = crypto.randomUUID();
+    this.employeesSignal.update((employees) => [...employees, { ...employee, _id }]);
+  }
+
+  editEmployee(employee: EmployeeI) {
+    const { _id } = employee;
+    this.employeesSignal.update((employees) => {
+      const index = employees.findIndex((e) => e._id === _id);
+      if (index !== -1) {
+        const newEmployees = [...employees];
+        newEmployees[index] = employee;
+        return newEmployees;
+      }
+      return employees;
+    });
   }
 }
