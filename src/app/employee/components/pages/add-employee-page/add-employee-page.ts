@@ -1,3 +1,4 @@
+import { EmployeeApi } from './../../../services/employee-api/employee-api';
 import { EmployeeService } from './../../../services/employee';
 import { Component, inject } from '@angular/core';
 import { EmployeeForm } from '../../ui/employee-form/employee-form';
@@ -12,10 +13,17 @@ import { Router } from '@angular/router';
 })
 export class AddEmployeePage {
   router = inject(Router);
-  employeeService = inject(EmployeeService);
+  //employeeService = inject(EmployeeService);
+
+  EmployeeApiService = inject(EmployeeApi);
 
   onAddEmployee(employee: EmployeeI) {
-    this.employeeService.addEmployee(employee);
-    this.router.navigate(['/employees']);
+    this.EmployeeApiService.addEmployee(employee).subscribe({
+      next: () => {
+        console.log('Employé ajouté avec succès');
+        this.router.navigate(['/employees']);
+      },
+      error: (err) => console.error('Erreur API', err),
+    });
   }
 }

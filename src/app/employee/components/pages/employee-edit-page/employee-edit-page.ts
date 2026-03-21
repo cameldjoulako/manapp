@@ -1,5 +1,6 @@
+import { EmployeeApi } from './../../../services/employee-api/employee-api';
 import { Component, computed, inject, input } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { rxResource, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { EmployeeService } from '../../../services/employee';
@@ -15,7 +16,9 @@ import { EmployeeForm } from '../../ui/employee-form/employee-form';
 })
 export class EmployeeEditPage {
   route = inject(ActivatedRoute);
-  employeeService = inject(EmployeeService);
+  //employeeService = inject(EmployeeService);
+
+  employeeApiService = inject(EmployeeApi);
 
   //employee: EmployeeI | null = null; //marche pour les 2 premiere methode
 
@@ -24,10 +27,10 @@ export class EmployeeEditPage {
 
   router = inject(Router);
 
-  employee = computed(() => {
+  /* employee = computed(() => {
     const id = this.empId();
     return this.employeeService.getEmployee(id);
-  });
+  }); */
 
   constructor() {
     //onservable: Recuperation de facon non réactive
@@ -55,8 +58,27 @@ export class EmployeeEditPage {
     //3e methode:
   }
 
-  onEditEmployee(employee: EmployeeI) {
-    this.employeeService.editEmployee(employee);
+  // Angular 20+
+  employeeRx = rxResource<EmployeeI, string>({
+    params: () => this.empId(),
+    stream: ({ params: empId }) => this.employeeApiService.getEmployee(empId),
+  });
+
+  employee = computed(() => this.employeeRx.value());
+
+  /* onEditEmployee(employee: EmployeeI) {
+    //this.employeeService.editEmployee(employee);
+
     this.router.navigate(['/employees']);
+  } */
+
+  onEditEmployee(employee: EmployeeI) {
+    this.employeeApiService.editEmployee(employee).subscribe({
+      next: () => {
+        console.log('Employé modifié avec succès');
+        this.router.navigate(['/employees']);
+      },
+      error: (err) => console.error('Erreur API modification', err),
+    });
   }
 }

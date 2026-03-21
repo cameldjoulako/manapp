@@ -1,10 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 //import { Test } from './test/test';
-import { Employee } from './components/ui/employee/employee';
-import { EmployeeI } from './models/employee.model';
-import { EmployeeList } from './components/ui/employee-list/employee-list';
-import { EmployeeService } from './services/employee';
+import { Employee } from './employee/components/ui/employee/employee';
+import { EmployeeI } from './employee/models/employee.model';
+import { EmployeeList } from './employee/components/ui/employee-list/employee-list';
+import { EmployeeService } from './employee/services/employee';
 import {
   FormControl,
   FormGroup,
@@ -16,6 +16,7 @@ import {
 import { JsonPipe, UpperCasePipe } from '@angular/common';
 import { required } from '@angular/forms/signals';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Header } from './shared/components/smart/header/header';
 /* import { DatePipe, CurrencyPipe, UpperCasePipe } from '@angular/common';
 import { LevelPipe } from './pipes/level-pipe'; */
 @Component({
@@ -24,7 +25,7 @@ import { LevelPipe } from './pipes/level-pipe'; */
     /* LevelPipe */ /* DatePipe, CurrencyPipe, UpperCasePipe */ RouterOutlet,
     /* FormsModule */
     /* JsonPipe */ ReactiveFormsModule,
-    /* UpperCasePipe */
+    Header,
   ],
   //template:
   templateUrl: './app.html',

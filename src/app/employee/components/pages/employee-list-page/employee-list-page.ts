@@ -5,7 +5,7 @@ import { EmployeeI } from '../../../models/employee.model';
 import { EmployeeService } from '../../../services/employee';
 import { Router, RouterLink } from '@angular/router';
 import { EmployeeApi } from '../../../services/employee-api/employee-api';
-import { Subscription } from 'rxjs';
+import { concat, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-employee-list-page',
@@ -36,12 +36,25 @@ export class EmployeeListPage implements OnDestroy {
 
   showDetails(employeeId: string) {
     //this.currentEmployee = this.employeeService.getEmployee(employeeId);
+    this.sub = this.employeeApi.getEmployee(employeeId).subscribe({
+      next: (employee) => {
+        this.currentEmployee = employee;
+      },
+      error: (err) => console.error('Erreur API', err),
+    });
   }
 
   onDelete(employeeId: string) {
     this.currentEmployee = null;
 
     //this.employeeService.deleteEmployee(employeeId);
+
+    this.sub = this.employeeApi.deleteEmployee(employeeId).subscribe({
+      next: () => {
+        this.employees.update((employees) => employees.filter((e) => e._id !== employeeId));
+      },
+      error: (err) => console.error('Erreur API', err),
+    });
   }
 
   onEdit(employeeId: string) {
