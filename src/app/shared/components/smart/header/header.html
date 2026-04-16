@@ -1,13 +1,16 @@
 <!-- header -->
 <header>
-  <nav>
-    <ul>
-      <li><a href="#">Register</a></li>
-      <li><a href="#">Login</a></li>
-    </ul>
-  </nav>
-  <div class="login-infos">
-    <button>Logout</button>
-    <div class="username">Camel D.</div>
-  </div>
+  @if (!isConnected()) {
+    <nav>
+      <ul>
+        <li><a routerLink="register">Register</a></li>
+        <li><a routerLink="login">Login</a></li>
+      </ul>
+    </nav>
+  } @else {
+    <div class="login-infos">
+      <button (click)="onLogout()">Logout</button>
+      <div class="username">Camel D.</div>
+    </div>
+  }
 </header>
