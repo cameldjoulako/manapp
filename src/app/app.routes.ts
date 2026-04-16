@@ -5,15 +5,18 @@ import { AddEmployeePage } from './employee/components/pages/add-employee-page/a
 import { RegisterPage } from './authentification/components/smart/register-page/register-page';
 import { LoginPage } from './authentification/components/smart/login-page/login-page';
 import { authGuard } from './authentification/guard/auth-guard';
+import { nonAuthGuard } from './authentification/guard/non-auth-guard';
 
 export const routes: Routes = [
   {
     path: 'register',
     component: RegisterPage,
+    canMatch: [nonAuthGuard],
   },
   {
     path: 'login',
     component: LoginPage,
+    canMatch: [nonAuthGuard],
   },
   {
     path: 'employees',
