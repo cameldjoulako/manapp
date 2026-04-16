@@ -4,6 +4,7 @@ import { EmployeeEditPage } from './employee/components/pages/employee-edit-page
 import { AddEmployeePage } from './employee/components/pages/add-employee-page/add-employee-page';
 import { RegisterPage } from './authentification/components/smart/register-page/register-page';
 import { LoginPage } from './authentification/components/smart/login-page/login-page';
+import { authGuard } from './authentification/guard/auth-guard';
 
 export const routes: Routes = [
   {
@@ -16,15 +17,22 @@ export const routes: Routes = [
   },
   {
     path: 'employees',
-    component: EmployeeListPage,
+    canMatch: [authGuard],
+    children: [
+      {
+        path: '',
+        component: EmployeeListPage,
+      },
+      {
+        path: 'new',
+        component: AddEmployeePage,
+      },
+      {
+        path: 'edit/:empId',
+        component: EmployeeEditPage,
+      },
+    ],
   },
-  {
-    path: 'employees/new',
-    component: AddEmployeePage,
-  },
-  {
-    path: 'employees/edit/:empId',
-    component: EmployeeEditPage,
-  },
+
   { path: '', redirectTo: 'employees', pathMatch: 'full' },
 ];
